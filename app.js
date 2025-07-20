@@ -6,20 +6,30 @@ const port=process.env.PORT||3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename );
 
-//app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+const publicPath = path.join(__dirname , 'public')
+app.use(express.static(publicPath));
+
+
+const links = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "About" },
+];
+const users = ["Rose", "Cake", "Biff"];
+
+app.use((req,res,next)=>{
+    res.locals.username = "faateh Butt";
+    next();
+})
+
 
 app.get('/',(req,res)=>{
-    let siteName = "adidas";
-    let searchText = "Search now";
-    const arr= ['hello' , 'beta' , 'how are u']
-    res.render('index' , {siteName:siteName , searchText:searchText , arr:arr});  
+   
+    res.render('index' , {message: "EJS Rocks" , name: "Faateh", event: "Coding Bootcamp", date: "Monday" , links: links  , users:users});  
+})
+app.get('/about' , (req,res)=>{
+    res.render('about' , {links:links})
 })
 
-
-app.get('/blog/:slug',(req,res)=>{
-    let blogTitle = "Adidas why and when"
-    let blogContent = "This is a very good brand";
-    res.render('blogpost' , {blogContent:blogContent , blogTitle:blogTitle});  
-})
 app.listen(port , ()=>{console.log('Server running on port 3000')})

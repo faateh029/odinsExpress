@@ -8,23 +8,13 @@
     <link rel = "stylesheet" href="/styles.css">
   </head>
   <body>
+    
     <%- include('navbar' , {links:links})  %>
-    <p>Welcome <%=username%>!</p>
-    <% const animals = ["Cat", "Dog", "Lemur", "Hawk"] %> 
-    <ul>
-      <% animals.map((animal)=>{%> 
-          <li><%= animal%>s are cute</li>
-      <%  })%> 
-    </ul> 
-    <%=message%>
-    <h1>Dear <%=name%></h1>
-    <h3>You are invited to the <%= event%> event on <%= date%></h3>
-    <ul>
-      <% users.forEach((user)=>{%>
-             <%- include('users' , {user:user})%>
-      <% }) %>
-    </ul>
-    <%- include('footer') %>
+    <h1>About page </h1>
+    <p>Welcome <%= username %></p>
+         <%- include('footer') %>
+
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
   </body>
 </html>
