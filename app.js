@@ -2,7 +2,7 @@ import express from 'express';
 import {fileURLToPath} from 'url';
 import {  body,  validationResult } from 'express-validator';
 import path from 'path';
-import usersRouter from './routes/usersRouter.js'
+import {userRouter} from './routes/usersRouter.js'
 const app = express();
 const port=process.env.PORT||3000;
  const __filename = fileURLToPath(import.meta.url);
@@ -12,7 +12,7 @@ app.use(express.json());
  app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
 
-app.use('/' , usersRouter)
+app.use('/' , userRouter)
 // app.post('/register' , body('name').notEmpty().withMessage('name is not correct') , 
 //    body('email').isEmail().withMessage('Please enter a valid email') , 
 //    body('age').optional().isInt({min:18, max:100}) , (req,res)=>{

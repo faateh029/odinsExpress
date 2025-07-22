@@ -1,6 +1,6 @@
 import {Router} from 'express'
-import {userController} from '../controllers/usersController.js';
+import {usersCreateGet,usersListGet,usersCreatePost} from '../controllers/usersController.js';
 export const userRouter= Router();
-userRouter.get('/' , userController.userListGet);
-userRouter.get('/create' , userController.userCreateGet);
-userRouter.post('/create' , userController.userCreatePost)
+userRouter.get('/' , usersListGet);
+userRouter.get('/create' , usersCreateGet);
+userRouter.post('/create' , usersCreatePost)
