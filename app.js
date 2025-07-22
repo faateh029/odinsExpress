@@ -1,4 +1,6 @@
 import express from 'express';
+import session from 'express-session';
+import flash from 'connect-flash';
 import {fileURLToPath} from 'url';
 import {  body,  validationResult } from 'express-validator';
 import path from 'path';
@@ -11,7 +13,8 @@ app.use(express.json());
  app.set("views", path.join(__dirname, "views"));
  app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
-
+app.use(session({ secret: 'your-secret', resave: false, saveUninitialized: false }));
+app.use(flash());
 app.use('/' , userRouter)
 // app.post('/register' , body('name').notEmpty().withMessage('name is not correct') , 
 //    body('email').isEmail().withMessage('Please enter a valid email') , 
