@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <% if (locals.errors && locals.errors.length) { %>
+  <div class="alert alert-danger">
+    <% locals.errors.forEach(error => { %>
+      <p><%= error.msg %></p>
+    <% }); %>
+  </div>
+<% } %>
+
+   
+
+    <!-- User Edit Form -->
+    <% if (user) { %>
+      <form action="/<%= user.id %>/update" method="POST">
+        <input type="text" name="firstName" value="<%= oldData.firstName || user.firstName %>" required>
+        <input type="text" name="lastName" value="<%= oldData.lastName || user.lastName %>" required>
+        <button type="submit">Update User</button>
+      </form>
+    <% } else { %>
+      <p class="alert alert-warning">User not found</p>
+    <% } %>
+
+    <a href="/">Back to home</a>
+  </body>
+</html>

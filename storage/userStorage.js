@@ -1,3 +1,4 @@
+
 class UserStorage {
     constructor(){
         this.storage ={} ; 
@@ -20,6 +21,19 @@ class UserStorage {
 
     deleteUser(id){
         delete this.storage[id];
+    }
+
+    updateUser(id , {firstName,lastName}){
+      
+        if(!this.storage[id]){
+            throw new Error("user not found")
+        }
+        if(typeof firstName != 'string' ||typeof lastName!='string'){
+            throw new Error('Name not correct')
+        }
+       this.storage[id] = { ...this.storage[id], firstName ,  lastName };
+       return this.storage[id];
+
     }
 }
 
