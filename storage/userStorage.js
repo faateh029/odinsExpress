@@ -14,7 +14,7 @@ class UserStorage {
         return Object.values(this.storage) 
     }
 
-    getUsers(id){
+    getUser(id){
         return this.storage[id]
     }
 
