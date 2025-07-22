@@ -57,8 +57,20 @@ export const updateUserPost = [
       res.redirect(`/users/${req.params.id}/update`);
        }
      }
-
-]
+    ]
+export const userDelete = (req, res) => {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) throw new Error("Invalid ID");
+    
+    userStorage.deleteUser(id);
+    req.flash('success', 'User deleted successfully');
+  } catch (error) {
+    req.flash('error', error.message);
+  }
+  console.log('returned back from deleteuser')
+  res.redirect('/');
+};
 export const usersCreatePost=[
     validateUser , 
     (req,res,next)=>{

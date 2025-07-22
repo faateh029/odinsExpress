@@ -19,8 +19,13 @@ class UserStorage {
         return this.storage[id]
     }
 
+
     deleteUser(id){
+        if(!this.storage[id]){
+            throw new Error('User not found');
+        }
         delete this.storage[id];
+        //return {success:true};
     }
 
     updateUser(id , {firstName,lastName}){
@@ -33,7 +38,6 @@ class UserStorage {
         }
        this.storage[id] = { ...this.storage[id], firstName ,  lastName };
        return this.storage[id];
-
     }
 }
 
